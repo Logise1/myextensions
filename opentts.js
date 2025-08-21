@@ -1,4 +1,3 @@
-
 (function (Scratch) {
   'use strict';
 
@@ -104,9 +103,13 @@
       const url = `https://tts.arielcapdevilagarcia.workers.dev/?text=${text}&voice=${voice}`;
 
       const response = await fetch(url);
-      const buffer = await response.arrayBuffer();
-      const base64 = btoa(String.fromCharCode(...new Uint8Array(buffer)));
-      return `data:audio/mpeg;base64,${base64}`;
+      const blob = await response.blob();
+
+      return new Promise(resolve => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result); // devuelve un data:audio/mpeg;base64,...
+        reader.readAsDataURL(blob);
+      });
     }
   }
 
