@@ -295,7 +295,7 @@
         }
 
         generate_image({ PROMPT }) {
-            return `https://image.pollinations.ai/prompt/${encodeURIComponent(PROMPT)}?height=1000&width=1000&enhance=true&nologo=true`;
+            return `https://image.pollinations.ai/prompt/${encodeURIComponent(PROMPT)}?height=1000&width=1000&enhance=true&nologo=true&model=lyriel-1.5-clean`;
         }
     }
 
